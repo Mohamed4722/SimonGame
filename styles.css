@@ -6,7 +6,21 @@ body {
 #level-title {
   font-family: 'Press Start 2P', cursive;
   font-size: 3rem;
-  margin:  5%;
+  margin:  3%;
+  color: #FEF2BF;
+}
+
+#Start-restart {
+  background-color: black;
+  display: inline-block;
+  height: 150px;
+  line-height: 150px;
+  width: 200px;
+  border: 10px solid #FEF2BF;
+  border-radius: 20%;
+  margin: 4% 0%;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1.5rem;
   color: #FEF2BF;
 }
 

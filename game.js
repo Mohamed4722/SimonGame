@@ -4,8 +4,9 @@ var buttonColours = ["red", "blue", "green", "yellow"];
 var started = false;
 var level = 0;
 
-$(document).on("keypress",function (){
-  if (!started) {
+$("#Start-restart").on("click",function (){
+  if (started === false) {
+    $("#Start-restart").fadeOut(1)
     nextSequence();
     started = true;
   }
@@ -32,7 +33,7 @@ function handleClick() {
   checkAnswer(userClickedPattern.length-1);
 }
 
-function playSound (name) {
+function playSound(name) {
   var mon_Sound = new Audio("sounds/" + name + ".mp3");
   mon_Sound.play();
 }
@@ -42,17 +43,19 @@ function animatePress(color) {
   setTimeout(function () { $("#" + color).removeClass("pressed");}, 100);
 }
 
-function gamOver(){
+function gamOver() {
+  level = 0 ;
+  gamePattern = [] ;
+  started = false ;
   playSound("wrong");
   $("body").addClass("game-over");
   setTimeout(function () { $("body").removeClass("game-over");}, 200);
-  $("#level-title").text("Game Over, Press Any Key to Restart");
-  var level = 0 ;
-  var gamePattern = [] ;
-  var started = false ;
+  $("#Start-restart").fadeIn(1)
+  $("#Start-restart").text("Restart!");
+  $("#level-title").text("Game Over, Press 'Restart!' to retry");
 }
 
-function checkAnswer (iterr){
+function checkAnswer(iterr) {
   if (gamePattern[iterr] === userClickedPattern[iterr]) {
     if (userClickedPattern.length === gamePattern.length){
       setTimeout(function () {
@@ -60,6 +63,6 @@ function checkAnswer (iterr){
       }, 1000);
     }
   } else {
-    gamOver();
+      gamOver();
   }
 }
